@@ -10,4 +10,6 @@ public interface ProductService {
     List<Product> getAllProducts();
 
     List<Product> getAllProducts(ProductModel request);
+
+    Product saveProduct(Product product);
 }

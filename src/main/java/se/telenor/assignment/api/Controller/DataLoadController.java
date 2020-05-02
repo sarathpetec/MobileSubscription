@@ -1,5 +1,6 @@
 package se.telenor.assignment.api.Controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -7,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import se.telenor.assignment.api.model.Product;
 import se.telenor.assignment.api.model.ProductModel;
+import se.telenor.assignment.api.service.ProductService;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -18,6 +20,9 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/dataload")
 public class DataLoadController {
+
+  @Autowired
+  private ProductService productService;
 
   @GetMapping()
   public void loadCSVToDB() throws Exception {
@@ -41,6 +46,7 @@ public class DataLoadController {
       product.setCity(getStoreCity(lineArray));
 
       System.out.println("product : "+product);
+      productService.saveProduct(product);
     }
   }
 
