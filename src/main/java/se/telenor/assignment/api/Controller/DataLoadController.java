@@ -31,11 +31,12 @@ public class DataLoadController {
       String[] key;
       String line;
       while (Objects.nonNull((line = subFileBufferedReader.readLine()))) {
-          key = new String[4];
+          key = new String[5];
           String[] lineArray = line.split(",", -1);
-          for(int i=0;i<4;i++){
-              System.out.println("Real :: "+lineArray[i]);
+          for(int i=0;i<5;i++){
+              System.out.println(lineArray[i]);
           }
+      System.out.println("-------------");
       }
 
   }
