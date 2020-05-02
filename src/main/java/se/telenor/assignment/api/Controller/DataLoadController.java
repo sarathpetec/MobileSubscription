@@ -75,6 +75,7 @@ public class DataLoadController {
 
   private String getStoreCity(String[] lineArray) {
     String value = lineArray[4];
-    return value.replace("\"", "");
+    value = value.replace("\"", "");
+    return  value.replace(" ", "");
   }
 }
