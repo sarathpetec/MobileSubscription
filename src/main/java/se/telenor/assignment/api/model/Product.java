@@ -16,58 +16,69 @@ public class Product {
     private Long id;
     private String type;
     private String color;
-    private Integer gbLimit;
+    private Double gbLimit;
     private Double price;
     private String address;
+    private String city;
 
-    public String getProperties(){
-        if(type.equals("phone")){
-            return "color:" + this.color;
-        }
-        //for subscription
-        return "gb_limit:" + this.gbLimit;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public void setProperties(String properties){
-        if(null != properties){
-            if(properties.contains("color")){
-                setColor(properties);
-            }
-            else{
-                setGbLimit(properties);
-            }
-        }
-    }
     public void setColor(String color) {
-        if(null != color){
-            if(color.contains(":")){
-                try{
-                    this.color = color.split(":")[1];
-                }
-                catch(ArrayIndexOutOfBoundsException e){
-                }
-            }
-            else{
-                this.color = color;
-            }
-        }
+        this.color = color;
     }
 
-    public void setGbLimit(String gbLimit){
-        if(null != gbLimit){
-            if(gbLimit.contains(":")){
-                try{
-                    this.gbLimit = Integer.parseInt(gbLimit.split(":")[1]);
-                }
-                catch(ArrayIndexOutOfBoundsException e){
-                }
-            }else{
-                this.gbLimit = Integer.parseInt(gbLimit);
-            }
-        }
-        else{
-            this.gbLimit = 10; //default value
-        }
+    public void setGbLimit(Double gbLimit) {
+        this.gbLimit = gbLimit;
     }
 
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public Double getGbLimit() {
+        return gbLimit;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", type='" + type + '\'' +
+                ", color='" + color + '\'' +
+                ", gbLimit=" + gbLimit +
+                ", price=" + price +
+                ", address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                '}';
+    }
 }
