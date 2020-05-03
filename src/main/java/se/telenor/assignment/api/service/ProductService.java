@@ -1,17 +1,29 @@
 package se.telenor.assignment.api.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import se.telenor.assignment.api.model.Product;
-import se.telenor.assignment.api.model.ProductModel;
+import se.telenor.assignment.api.repository.ProductRepository;
 
 import java.util.List;
 
-public interface ProductService {
+@Component
+public class ProductService {
 
-    List<Product> getAllProducts();
+    @Autowired
+    private ProductRepository productRepository;
 
-    List<Product> getAllProducts(Product product);
+    public List<Product> getAllProducts() {
+        return (List<Product>) productRepository.findAll();
+    }
 
-    Product saveProduct(Product product);
+    public List<Product> getAllProducts(Product product) {
+        return null;
+    }
 
-    public List<Product> getProducts(String type);
+    public List<Product> getProducts(String type) {
+        return productRepository.findByType(type);
+    }
+
+
 }
