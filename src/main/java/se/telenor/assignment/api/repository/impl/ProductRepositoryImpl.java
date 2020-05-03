@@ -11,6 +11,8 @@ import javax.persistence.criteria.Predicate;
 import java.util.ArrayList;
 import java.util.List;
 
+import static se.telenor.assignment.api.util.MobileSubscriptionConstant.*;
+
 
 @Service
 public class ProductRepositoryImpl{
@@ -30,28 +32,28 @@ public class ProductRepositoryImpl{
         return productRepository.findAll((Specification<Product>) (root, query, criteriaBuilder) -> {
             List<Predicate> predicates = new ArrayList<>();
             if(productModel.getType()!=null) {
-                predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get("type"), productModel.getType())));
+                predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get(TYPE), productModel.getType())));
             }
             if(productModel.getColor()!=null) {
-                predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get("color"), productModel.getColor())));
+                predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get(COLOR), productModel.getColor())));
             }
             if(productModel.getCity()!=null) {
-                predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get("city"), productModel.getCity())));
+                predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get(CITY), productModel.getCity())));
             }
             if(productModel.getAddress()!=null) {
-                predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get("address"), productModel.getAddress())));
+                predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get(ADDRESS), productModel.getAddress())));
             }
             if(productModel.getMin_price()!=null) {
-                predicates.add(criteriaBuilder.and(criteriaBuilder.le(root.get("price"), productModel.getMin_price())));
+                predicates.add(criteriaBuilder.and(criteriaBuilder.le(root.get(PRICE), productModel.getMin_price())));
             }
             if(productModel.getMax_price()!=null) {
-                predicates.add(criteriaBuilder.and(criteriaBuilder.ge(root.get("price"), productModel.getMax_price())));
+                predicates.add(criteriaBuilder.and(criteriaBuilder.ge(root.get(PRICE), productModel.getMax_price())));
             }
             if(productModel.getGb_limit_min()!=null) {
-                predicates.add(criteriaBuilder.and(criteriaBuilder.le(root.get("gbLimit"), productModel.getGb_limit_min())));
+                predicates.add(criteriaBuilder.and(criteriaBuilder.le(root.get(GB_LIMIT), productModel.getGb_limit_min())));
             }
             if(productModel.getGb_limit_max()!=null) {
-                predicates.add(criteriaBuilder.and(criteriaBuilder.ge(root.get("gbLimit"), productModel.getGb_limit_max())));
+                predicates.add(criteriaBuilder.and(criteriaBuilder.ge(root.get(GB_LIMIT), productModel.getGb_limit_max())));
             }
             return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
         });
