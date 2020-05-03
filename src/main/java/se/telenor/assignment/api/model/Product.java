@@ -39,6 +39,7 @@ public class Product {
         this.price = price;
     }
 
+    @JsonProperty(value = "store_address")
     public void setAddress(String address) {
         this.address = address;
     }
@@ -64,6 +65,7 @@ public class Product {
         return price;
     }
 
+    @JsonProperty(value = "store_address")
     public String getAddress() {
         return address;
     }
