@@ -1,5 +1,6 @@
 package se.telenor.assignment.api.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -16,7 +17,7 @@ public class Product {
     private Long id;
     private String type;
     private String color;
-    private Double gbLimit;
+    private String gbLimit;
     private Double price;
     private String address;
     private String city;
@@ -29,7 +30,8 @@ public class Product {
         this.color = color;
     }
 
-    public void setGbLimit(Double gbLimit) {
+    @JsonProperty(value = "properties")
+    public void setGbLimit(String gbLimit) {
         this.gbLimit = gbLimit;
     }
 
@@ -53,7 +55,8 @@ public class Product {
         return color;
     }
 
-    public Double getGbLimit() {
+    @JsonProperty(value = "properties")
+    public String getGbLimit() {
         return gbLimit;
     }
 

@@ -8,6 +8,7 @@ import se.telenor.assignment.api.repository.impl.ProductRepositoryImpl;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Component
 public class ProductService {
@@ -20,7 +21,6 @@ public class ProductService {
         List<Product> productList;
         if (Objects.nonNull(productModel)) {
             productList = findByCriteria(productModel);
-            System.out.println("productList size :: " + productList.size());
             productList.stream().forEach(product -> System.out.println(product.toString()));
         } else {
             productList = productRepositoryImpl.getAllProducts();
@@ -29,8 +29,28 @@ public class ProductService {
     }
 
     public List<Product> findByCriteria(ProductModel productModel) {
-        return productRepositoryImpl.findByCriteria(productModel);
+        List<Product> products = productRepositoryImpl.findByCriteria(productModel);
+        return modifyProductList(products);
     }
+
+    public List<Product> modifyProductList(List<Product> products){
+    return products.stream()
+        .map(product -> {
+              String address = product.getAddress().concat(", ").concat(product.getCity());
+              product.setAddress(address);
+              product.setCity(null);
+              String gbLimit = (product.getGbLimit().equals("0")) ? null : product.getGbLimit();
+                if (Objects.nonNull(gbLimit))
+                    product.setGbLimit("gb_limit:".concat(gbLimit));
+                else
+                    product.setGbLimit(null);
+              String color = (Objects.isNull(product.getColor()) || product.getColor().length() == 0)? null: product.getColor();
+              product.setColor(color);
+              return product;
+            })
+        .collect(Collectors.toList());
+    }
+
 
 
 

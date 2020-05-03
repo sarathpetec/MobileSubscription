@@ -8,6 +8,9 @@ public class MobileSubscriptionConstant {
     public static final String PRICE = "price";
     public static final String GB_LIMIT = "gbLimit";
 
+    public static final String DATA_CSV_PATH = "/data.csv";
+    public static final String FILE_DELIMITER = ",";
+
 
 
 }

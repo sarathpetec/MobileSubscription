@@ -14,6 +14,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+import static se.telenor.assignment.api.util.MobileSubscriptionConstant.DATA_CSV_PATH;
+import static se.telenor.assignment.api.util.MobileSubscriptionConstant.FILE_DELIMITER;
+
 @Component
 public class DataLoadService {
 
@@ -24,13 +27,13 @@ public class DataLoadService {
     try {
       BufferedReader subFileBufferedReader =
           new BufferedReader(
-              new InputStreamReader(DataLoadRestController.class.getResourceAsStream("/data.csv")));
-      String[] subFileColumnNames = subFileBufferedReader.readLine().split(",");
+              new InputStreamReader(DataLoadRestController.class.getResourceAsStream(DATA_CSV_PATH)));
+      String[] subFileColumnNames = subFileBufferedReader.readLine().split(FILE_DELIMITER);
       System.out.println("subFileColumnNames: " + subFileColumnNames.length);
       Arrays.stream(subFileColumnNames).forEach(s -> System.out.println("Value :: " + s));
       String line;
       while (Objects.nonNull((line = subFileBufferedReader.readLine()))) {
-        String[] lineArray = line.split(",", -1);
+        String[] lineArray = line.split(FILE_DELIMITER, -1);
         Product product = new Product();
         product.setType(getProductType(lineArray));
         product.setColor(getProductPropertiesColor(lineArray));
@@ -60,10 +63,10 @@ public class DataLoadService {
     return "";
   }
 
-  public double getProductPropertiesGbLimit(String[] lineArray) {
+  public String getProductPropertiesGbLimit(String[] lineArray) {
     String value = lineArray[1];
-    if (value.contains("gb_limit")) return Double.parseDouble(value.split(":")[1]);
-    return 0;
+    if (value.contains("gb_limit")) return value.split(":")[1];
+    return "0";
   }
 
   public double getPrice(String[] lineArray) {

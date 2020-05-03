@@ -2,7 +2,6 @@ package se.telenor.assignment.api.model;
 
 import lombok.Data;
 
-//Query Parameter
 @Data
 public class ProductModel {
     private String type;
