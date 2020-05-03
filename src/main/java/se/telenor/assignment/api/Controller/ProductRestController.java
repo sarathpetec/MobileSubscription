@@ -30,7 +30,6 @@ public class ProductRestController {
       ProductModel productModel = productRequestModel.get();
       productList = productService.getAllProducts(productModel);
     }
-    ResponseEntity responseEntity = new ResponseEntity<>(productList, HttpStatus.OK);
-    return responseEntity;
+    return new ResponseEntity<>(productList, HttpStatus.OK);
   }
 }

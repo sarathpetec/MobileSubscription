@@ -18,7 +18,7 @@ public class Product {
     private Long id;
     private String type;
     private String color;
-    private String gbLimit;
+    private Double gbLimit;
     private Double price;
     private String address;
     private String city;
@@ -43,9 +43,19 @@ public class Product {
         this.color = color;
     }
 
-    @JsonProperty(value = "properties")
-    public void setGbLimit(String gbLimit) {
+    @JsonIgnore
+    public void setGbLimit(Double gbLimit) {
         this.gbLimit = gbLimit;
+    }
+
+    @JsonProperty(value = "properties")
+    public void setProperties(Double gbLimit) {
+        this.gbLimit = gbLimit;
+    }
+
+    @JsonProperty(value = "properties")
+    public String getProperties() {
+        return "gb_limit:" + this.gbLimit;
     }
 
     public void setPrice(Double price) {
@@ -69,8 +79,8 @@ public class Product {
         return color;
     }
 
-    @JsonProperty(value = "properties")
-    public String getGbLimit() {
+    @JsonIgnore
+    public Double getGbLimit() {
         return gbLimit;
     }
 

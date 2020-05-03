@@ -63,10 +63,10 @@ public class DataLoadService {
     return "";
   }
 
-  public String getProductPropertiesGbLimit(String[] lineArray) {
+  public double getProductPropertiesGbLimit(String[] lineArray) {
     String value = lineArray[1];
-    if (value.contains("gb_limit")) return value.split(":")[1];
-    return "0";
+    if (value.contains("gb_limit")) return Double.parseDouble(value.split(":")[1]);
+    return 0;
   }
 
   public double getPrice(String[] lineArray) {

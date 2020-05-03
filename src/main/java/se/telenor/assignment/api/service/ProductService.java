@@ -39,9 +39,9 @@ public class ProductService {
               String address = product.getAddress().concat(", ").concat(product.getCity());
               product.setAddress(address);
               product.setCity(null);
-              String gbLimit = (product.getGbLimit().equals("0")) ? null : product.getGbLimit();
+              Double gbLimit = (product.getGbLimit()==0) ? null : product.getGbLimit();
                 if (Objects.nonNull(gbLimit))
-                    product.setGbLimit("gb_limit:".concat(gbLimit));
+                    product.setGbLimit(gbLimit);
                 else
                     product.setGbLimit(null);
               String color = (Objects.isNull(product.getColor()) || product.getColor().length() == 0)? null: product.getColor();
