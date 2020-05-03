@@ -25,6 +25,16 @@ public class Product {
 
     public Product(){}
 
+    public Product(Long id, String type, String color, Double gbLimit, Double price, String address, String city) {
+        this.id = id;
+        this.type = type;
+        this.color = color;
+        this.gbLimit = gbLimit;
+        this.price = price;
+        this.address = address;
+        this.city = city;
+    }
+
     @JsonIgnore
     public Long getId() {
         return id;

@@ -39,7 +39,7 @@ public class ProductService {
               String address = product.getAddress().concat(", ").concat(product.getCity());
               product.setAddress(address);
               product.setCity(null);
-              Double gbLimit = (product.getGbLimit()==0) ? null : product.getGbLimit();
+              Double gbLimit = (Objects.isNull(product.getGbLimit()) || product.getGbLimit()==0) ? null : product.getGbLimit();
                 if (Objects.nonNull(gbLimit))
                     product.setGbLimit(gbLimit);
                 else

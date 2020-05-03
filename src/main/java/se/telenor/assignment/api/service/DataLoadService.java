@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import static se.telenor.assignment.api.util.MobileSubscriptionConstant.DATA_CSV_PATH;
 import static se.telenor.assignment.api.util.MobileSubscriptionConstant.FILE_DELIMITER;
@@ -87,5 +88,9 @@ public class DataLoadService {
 
   public Product saveProduct(Product product) {
     return productRepository.save(product);
+  }
+
+  public List<Product> saveProducts(List<Product> product) {
+    return product.stream().map(product1 -> productRepository.save(product1)).collect(Collectors.toList());
   }
 }
