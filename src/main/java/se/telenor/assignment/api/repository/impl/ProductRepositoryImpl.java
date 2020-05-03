@@ -44,16 +44,16 @@ public class ProductRepositoryImpl{
                 predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get(ADDRESS), productModel.getAddress())));
             }
             if(productModel.getMin_price()!=null) {
-                predicates.add(criteriaBuilder.and(criteriaBuilder.le(root.get(PRICE), productModel.getMin_price())));
+                predicates.add(criteriaBuilder.and(criteriaBuilder.ge(root.get(PRICE), productModel.getMin_price())));
             }
             if(productModel.getMax_price()!=null) {
-                predicates.add(criteriaBuilder.and(criteriaBuilder.ge(root.get(PRICE), productModel.getMax_price())));
+                predicates.add(criteriaBuilder.and(criteriaBuilder.le(root.get(PRICE), productModel.getMax_price())));
             }
             if(productModel.getGb_limit_min()!=null) {
-                predicates.add(criteriaBuilder.and(criteriaBuilder.le(root.get(GB_LIMIT), productModel.getGb_limit_min())));
+                predicates.add(criteriaBuilder.and(criteriaBuilder.ge(root.get(GB_LIMIT), productModel.getGb_limit_min())));
             }
             if(productModel.getGb_limit_max()!=null) {
-                predicates.add(criteriaBuilder.and(criteriaBuilder.ge(root.get(GB_LIMIT), productModel.getGb_limit_max())));
+                predicates.add(criteriaBuilder.and(criteriaBuilder.le(root.get(GB_LIMIT), productModel.getGb_limit_max())));
             }
             return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
         });
