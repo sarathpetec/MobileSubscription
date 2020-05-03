@@ -19,7 +19,7 @@ public class DataLoadRestController {
   private DataLoadService dataLoadService;
 
   @GetMapping()
-  public ResponseEntity<List<Product>> loadCSVToDB() throws Exception {
+  public ResponseEntity<List<Product>> loadCSVToDB() {
     List<Product> productList = dataLoadService.loadCSVToDB();
     return new ResponseEntity<>(productList, HttpStatus.OK);
   }

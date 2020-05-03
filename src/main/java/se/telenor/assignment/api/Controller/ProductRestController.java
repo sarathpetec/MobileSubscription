@@ -11,6 +11,7 @@ import se.telenor.assignment.api.model.Product;
 import se.telenor.assignment.api.model.ProductModel;
 import se.telenor.assignment.api.service.ProductService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,16 +25,10 @@ public class ProductRestController {
   @GetMapping()
   public ResponseEntity<List<Product>> getAllProducts(@ModelAttribute("productRequestModel") Optional<ProductModel> productRequestModel) {
     System.out.println("productRequestModel: " + productRequestModel.get());
-    List<Product> productList;
+    List<Product> productList = new ArrayList<>();
     if (productRequestModel.isPresent()) {
       ProductModel productModel = productRequestModel.get();
-      System.out.println("Going to get all product");
-      //productList = productService.getProducts(productModel.getType());
-      productList = productService.findByCriteria(productModel);
-      System.out.println("productList size :: " + productList.size());
-      productList.stream().forEach(product -> System.out.println(product.toString()));
-    } else {
-      productList = productService.getAllProducts();
+      productList = productService.getAllProducts(productModel);
     }
     return new ResponseEntity<>(productList, HttpStatus.OK);
   }
