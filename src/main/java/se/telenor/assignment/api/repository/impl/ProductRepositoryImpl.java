@@ -39,18 +39,33 @@ public class ProductRepositoryImpl{
     }
 
     public List<Product> findByCriteria(ProductModel productModel){
-        return productRepository.findAll(new Specification<Product>() {
-            @Override
-            public Predicate toPredicate(Root<Product> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
-                List<Predicate> predicates = new ArrayList<>();
-                if(productModel.getType()!=null) {
-                    predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get("type"), productModel.getType())));
-                }
-                if(productModel.getColor()!=null) {
-                    predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get("color"), productModel.getColor())));
-                }
-                return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
+        return productRepository.findAll((Specification<Product>) (root, query, criteriaBuilder) -> {
+            List<Predicate> predicates = new ArrayList<>();
+            if(productModel.getType()!=null) {
+                predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get("type"), productModel.getType())));
             }
+            if(productModel.getColor()!=null) {
+                predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get("color"), productModel.getColor())));
+            }
+            if(productModel.getCity()!=null) {
+                predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get("city"), productModel.getCity())));
+            }
+            if(productModel.getAddress()!=null) {
+                predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get("address"), productModel.getAddress())));
+            }
+            if(productModel.getMin_price()!=null) {
+                predicates.add(criteriaBuilder.and(criteriaBuilder.le(root.get("price"), productModel.getMin_price())));
+            }
+            if(productModel.getMax_price()!=null) {
+                predicates.add(criteriaBuilder.and(criteriaBuilder.ge(root.get("price"), productModel.getMax_price())));
+            }
+            if(productModel.getGb_limit_min()!=null) {
+                predicates.add(criteriaBuilder.and(criteriaBuilder.le(root.get("gbLimit"), productModel.getGb_limit_min())));
+            }
+            if(productModel.getGb_limit_max()!=null) {
+                predicates.add(criteriaBuilder.and(criteriaBuilder.ge(root.get("gbLimit"), productModel.getGb_limit_max())));
+            }
+            return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
         });
     }
 

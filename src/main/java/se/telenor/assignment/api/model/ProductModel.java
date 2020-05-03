@@ -9,7 +9,7 @@ public class ProductModel {
     private Double min_price;
     private Double max_price;
     private String city;
-    private String property;
+    private String address;
     private String color;
     private Double gb_limit_min;
     private Double gb_limit_max;
@@ -39,12 +39,12 @@ public class ProductModel {
         this.city = city;
     }
 
-    public String getProperty() {
-        return property;
+    public String getAddress() {
+        return address;
     }
 
-    public void setProperty(String property) {
-        this.property = property;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getColor() {
