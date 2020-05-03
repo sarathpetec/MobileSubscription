@@ -28,7 +28,8 @@ public class ProductRestController {
     if (productRequestModel.isPresent()) {
       ProductModel productModel = productRequestModel.get();
       System.out.println("Going to get all product");
-      productList = productService.getProducts(productModel.getType());
+      //productList = productService.getProducts(productModel.getType());
+      productList = productService.findByCriteria(productModel);
       System.out.println("productList size :: " + productList.size());
       productList.stream().forEach(product -> System.out.println(product.toString()));
     } else {

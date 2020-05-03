@@ -3,7 +3,8 @@ package se.telenor.assignment.api.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import se.telenor.assignment.api.model.Product;
-import se.telenor.assignment.api.repository.ProductRepository;
+import se.telenor.assignment.api.model.ProductModel;
+import se.telenor.assignment.api.repository.impl.ProductRepositoryImpl;
 
 import java.util.List;
 
@@ -11,10 +12,10 @@ import java.util.List;
 public class ProductService {
 
     @Autowired
-    private ProductRepository productRepository;
+    private ProductRepositoryImpl productRepositoryImpl;
 
     public List<Product> getAllProducts() {
-        return (List<Product>) productRepository.findAll();
+        return (List<Product>) productRepositoryImpl.getAllProducts();
     }
 
     public List<Product> getAllProducts(Product product) {
@@ -22,8 +23,13 @@ public class ProductService {
     }
 
     public List<Product> getProducts(String type) {
-        return productRepository.findByType(type);
+        return productRepositoryImpl.getProductsByType(type);
     }
+
+    public List<Product> findByCriteria(ProductModel productModel) {
+        return productRepositoryImpl.findByCriteria(productModel);
+    }
+
 
 
 }
