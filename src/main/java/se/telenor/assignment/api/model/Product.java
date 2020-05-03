@@ -1,5 +1,6 @@
 package se.telenor.assignment.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
@@ -21,6 +22,18 @@ public class Product {
     private Double price;
     private String address;
     private String city;
+
+    public Product(){}
+
+    @JsonIgnore
+    public Long getId() {
+        return id;
+    }
+
+    @JsonIgnore
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public void setType(String type) {
         this.type = type;
