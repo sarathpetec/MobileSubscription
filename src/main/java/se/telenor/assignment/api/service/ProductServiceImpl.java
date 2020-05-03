@@ -20,13 +20,18 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> getAllProducts(ProductModel request) {
+    public List<Product> getAllProducts(Product product) {
         return null;
     }
 
     @Override
     public Product saveProduct(Product product) {
         return productRepository.save(product);
+    }
+
+    @Override
+    public List<Product> getProducts(String type) {
+        return productRepository.findByType(type);
     }
 
 

@@ -18,19 +18,21 @@ import java.util.Optional;
 @RequestMapping("/product")
 public class ProductController {
 
-    @Autowired
-    private ProductService productService;
+  @Autowired private ProductService productService;
 
-    @GetMapping()
-    public ResponseEntity<List<Product>> getAllProducts(@ModelAttribute("productRequestModel") Optional<ProductModel> productRequestModel) {
-        System.out.println("productRequestModel: " + productRequestModel.get());
-        List<Product> productList;
-        if(productRequestModel.isPresent()){
-            productList = productService.getAllProducts(productRequestModel.get());
-        }
-        else{
-            productList = productService.getAllProducts();
-        }
-        return new ResponseEntity<>(productList, HttpStatus.OK);
+  @GetMapping()
+  public ResponseEntity<List<Product>> getAllProducts(
+      @ModelAttribute("productRequestModel") Optional<ProductModel> productRequestModel) {
+    System.out.println("productRequestModel: " + productRequestModel.get());
+    List<Product> productList;
+    if (productRequestModel.isPresent()) {
+      System.out.println("Going to get all product");
+      productList = productService.getProducts("phone");
+      System.out.println("productList size :: " + productList.size());
+      productList.stream().forEach(product -> System.out.println(product.toString()));
+    } else {
+      productList = productService.getAllProducts();
     }
+    return new ResponseEntity<>(productList, HttpStatus.OK);
+  }
 }
