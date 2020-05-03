@@ -15,15 +15,7 @@ public class ProductService {
     private ProductRepositoryImpl productRepositoryImpl;
 
     public List<Product> getAllProducts() {
-        return (List<Product>) productRepositoryImpl.getAllProducts();
-    }
-
-    public List<Product> getAllProducts(Product product) {
-        return null;
-    }
-
-    public List<Product> getProducts(String type) {
-        return productRepositoryImpl.getProductsByType(type);
+        return productRepositoryImpl.getAllProducts();
     }
 
     public List<Product> findByCriteria(ProductModel productModel) {
