@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Objects;
 
 @Entity
 @Data
@@ -53,7 +54,6 @@ public class Product {
         this.color = color;
     }
 
-    @JsonIgnore
     public void setGbLimit(Double gbLimit) {
         this.gbLimit = gbLimit;
     }
@@ -65,7 +65,10 @@ public class Product {
 
     @JsonProperty(value = "properties")
     public String getProperties() {
-        return "gb_limit:" + this.gbLimit;
+        if (Objects.nonNull(this.gbLimit))
+            return "gb_limit:" + this.gbLimit;
+        else
+            return null;
     }
 
     public void setPrice(Double price) {
@@ -116,6 +119,7 @@ public class Product {
                 ", gbLimit=" + gbLimit +
                 ", price=" + price +
                 ", address='" + address + '\'' +
+                ", property='" + getProperties() + '\'' +
                 ", city='" + city + '\'' +
                 '}';
     }
