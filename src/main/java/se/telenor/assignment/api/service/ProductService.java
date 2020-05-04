@@ -35,16 +35,19 @@ public class ProductService {
 
     public List<Product> modifyProductList(List<Product> products){
     return products.stream()
-        .map(product -> {
+        .map(
+            product -> {
               String address = product.getAddress().concat(", ").concat(product.getCity());
               product.setAddress(address);
               product.setCity(null);
-              Double gbLimit = (Objects.isNull(product.getGbLimit()) || product.getGbLimit()==0) ? null : product.getGbLimit();
-                if (Objects.nonNull(gbLimit))
-                    product.setGbLimit(gbLimit);
-                else
-                    product.setGbLimit(null);
-              String color = (Objects.isNull(product.getColor()) || product.getColor().length() == 0)? null: product.getColor();
+              Double gbLimit = (Objects.isNull(product.getGbLimit())) ? null : product.getGbLimit();
+              System.out.println("gbLimit -->"+gbLimit);
+              if (Objects.nonNull(gbLimit)) product.setGbLimit(gbLimit);
+              else product.setGbLimit(null);
+              String color =
+                  (Objects.isNull(product.getColor()) || product.getColor().length() == 0)
+                      ? null
+                      : product.getColor();
               product.setColor(color);
               return product;
             })
